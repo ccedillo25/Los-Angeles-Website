@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 const residentialPackages = [
   {
     title: "Design + Build",
@@ -16,21 +17,26 @@ const residentialPackages = [
     description: "Container rotations, mulch, and accent lighting to keep gatherings fresh every quarter.",
     bullets: ["Holiday + event styling", "Color program planning", "Soil health & fertilization"],
   },
+  { 
+    title: "Consultations",
+    description: "Hear from our expert team",
+    bullets: [] // Added empty array to prevent .map() error
+  },
 ];
 
 const gallery = [
   {
-    title: "Studio City hillside",
+    title: "Los Angeles",
     description: "Native meadow, stepped pathways, and accent boulders inspired by Pacific Outdoor Living projects.",
     image: "https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    title: "Cheviot Hills courtyard",
+    title: "Cerritos",
     description: "Turf alternatives, citrus espalier, and evening lighting similar to BrightView showcase gardens.",
     image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    title: "San Marino estate",
+    title: "Redondo Beach",
     description: "Formal hedges with discreet irrigation upgrades modeled after The Grounds Guys' estate work.",
     image: "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80",
   },
@@ -54,8 +60,9 @@ export default function ResidentialPage() {
             <article key={pkg.title} className="rounded-2xl border border-emerald-100 bg-white p-6 shadow-sm">
               <h2 className="text-2xl font-semibold text-emerald-950">{pkg.title}</h2>
               <p className="mt-2 text-sm text-emerald-800">{pkg.description}</p>
+              {/* Added optional chaining ?. to be extra safe */}
               <ul className="mt-4 space-y-2 text-sm text-emerald-700">
-                {pkg.bullets.map((bullet) => (
+                {pkg.bullets?.map((bullet) => (
                   <li key={bullet} className="flex items-start gap-2">
                     <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500" />
                     <span>{bullet}</span>
